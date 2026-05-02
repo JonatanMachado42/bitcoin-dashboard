@@ -42,6 +42,11 @@ def monthly_change(dataframe: pd.DataFrame) -> pd.DataFrame:
     dataframe["Change_monthly"] = dataframe["Close"] - dataframe["Close"].shift(43200)
     return dataframe
 
+def porcentage_monthly_change(dataframe: pd.DataFrame) -> pd.DataFrame:
+    dataframe_copy = dataframe.copy()
+    dataframe_copy["Porcentage_change_monthly"] = (dataframe["Close"] - dataframe["Close"].shift(43200)) / dataframe["Close"].shift(43200) * 100
+    return dataframe_copy
+
 
 def rolling_avg_weekly(dataframe: pd.DataFrame) -> pd.DataFrame:
     dataframe["rolling_avg_weekly"] = dataframe["Close"].rolling(window=10080).mean()
